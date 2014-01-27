@@ -40,7 +40,7 @@ int main (int argc, char* argv[])
  */
 string greet (string name)
 {
-	cout << "Nice to meet you, " << name << endl;
+    return "Nice to meet you, " + name;
 }
 
 /*
@@ -53,7 +53,14 @@ string greet (string name)
  */
 string checkExperience (char hasExperience)
 {
-	// CODE HERE
+	if(hasExperience == 'y' || hasExperience == 'Y')
+	{
+	    return "Welcome back"; 
+	}
+	else
+	{
+	    return "Get ready to have some fun";
+	}
 }
 
 /*
