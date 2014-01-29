@@ -1,5 +1,12 @@
 /*
- * Programming Project 1
+ * Project 1
+ * Counts and manipulates characters in a string or array of numbers
+ *
+ * Sara Taylor
+ * Date created: 1/29/2014
+ * Last date modified: 1/29/2014
+ *
+ * SOURCES USED
  */
 #include <cassert>
 #include <climits>
@@ -7,11 +14,46 @@
 #include <string>
 using namespace std;
 
+/*
+ * Counts the number of of alphabetic and numeric characters
+ * @param theString 
+ * @param alpha an int holding the number of alphabetic characters in theString
+ * @param num an int holding the number of numeric characters in theString
+ */
 void countCharacters (string theString, int& alpha, int& num);
+/*
+ * Capatalize every other character in a string 
+ * @param theString a string to be altered by the program
+ * @return a string that has been altered by the function
+ */
 string upAndDown (string theString);
+/*
+ * Counts the number of words seperated by spaces in a given string
+ * @param theString a string that does not begin or end with a space and does
+ *          not contain multiple spaces back to back
+ * @return an int containing the number of words in the string
+ */
 int countWords (string theString);
+/*
+ * Finds the average of a given array of integers
+ * @param values an array of integers 
+ * @param  arraySize the size of the values parameter
+ * @return an integer containing the average of the contents of the value array
+ */
 int computeAverage (int values [], int arraySize);
+/*
+ * Find the minimum value in an array of integers
+ * @param values an array of integers
+ * @param arraySize the size of the values array
+ * @return an int containing the min value in the given array
+ */
 int findMinValue (int values [], int arraySize);
+/*
+ * Find the maximum value in an array of integers
+ * @param values an array of integers
+ * @param arraySize the size of the values array
+ * @return an int containing the max value in the given array
+ */
 int findMaxValue (int values [], int arraySize);
 
 /* for unit testing -- do not alter */
@@ -24,6 +66,36 @@ int main (int argc, char* argv[])
 	unittest();
 	
 	return 0;
+}
+
+void countCharacters (string theString, int& alpha, int& num)
+{
+    
+}
+
+string upAndDown (string theString);
+{
+    
+}
+
+int countWords (string theString)
+{
+    
+}
+
+int computeAverage (int values [], int arraySize)
+{
+    
+}
+
+int findMinValue (int values [], int arraySize)
+{
+    
+}
+
+int findMaxValue (int values [], int arraySize)
+{
+    
 }
 
 /*
