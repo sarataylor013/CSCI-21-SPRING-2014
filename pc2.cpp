@@ -95,14 +95,20 @@ void makeChange (int initialValue, int& quarters, int& dimes, int& nickels, int&
  */
 double launchHumanCannonball (double initialVelocity, double launchAngle)
 {
-	// CODE HERE
-	//
+	double xVeloc, yVeloc, finalVeloc, radAngle, time, distance;
+	xVeloc = yVeloc = finalVeloc = radAngle = time = distance = 0.0;
 	// 1 convert launchAngle from degrees to radians [radangle = degangle * (PI/180)]
-	launchAngle = (launchAngle * (3.16/180));
+	radAngle = (launchAngle * (3.14/180));
 	// 2 compute final horizontal/x velocity [xveloc = initialVelocity * cos(radangle)]
+	xVeloc = initialVelocity * cos(radAngle);
 	// 3 compute final vertical/y velocity [yveloc = initialVecity * sin(radangle) * -1]
+	yVeloc = initialVelocity * sin(radAngle) * (-1);
 	// 4 compute time of flight [flighttime = (yveloc) * 2 / -9.8]
+	time = (yVeloc * 2) / (-9.8);
 	// 5 compute horizontal/x distance traveled [xdistance = xveloc * flighttime]
+	distance = xVeloc * time;
+	
+	return distance;
 }
 
 /*
