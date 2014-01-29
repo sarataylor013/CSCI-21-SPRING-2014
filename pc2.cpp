@@ -59,7 +59,27 @@ bool isFactor (int numerator, int denominator)
  */
 void makeChange (int initialValue, int& quarters, int& dimes, int& nickels, int& pennies)
 {
-	// CODE HERE
+    quarters = dimes = nickels = pennies =0;
+    while(initialValue > 26)
+    {
+        initialValue -= 25;
+        quarters++;
+    }
+    while(initialValue >= 10)
+    {
+        initialValue -= 10;
+        dimes++;
+    }
+    while(initialValue >= 5)
+    {
+        initialValue -= 5;
+        nickels++;
+    }
+    while(initialValue > 0)
+    {
+        initialValue -= 1;
+        pennies++;
+    }
 }
 
 /*
@@ -78,6 +98,7 @@ double launchHumanCannonball (double initialVelocity, double launchAngle)
 	// CODE HERE
 	//
 	// 1 convert launchAngle from degrees to radians [radangle = degangle * (PI/180)]
+	launchAngle = (launchAngle * (PI/180));
 	// 2 compute final horizontal/x velocity [xveloc = initialVelocity * cos(radangle)]
 	// 3 compute final vertical/y velocity [yveloc = initialVecity * sin(radangle) * -1]
 	// 4 compute time of flight [flighttime = (yveloc) * 2 / -9.8]
