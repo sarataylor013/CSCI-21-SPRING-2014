@@ -73,29 +73,39 @@ void countCharacters (string theString, int& alpha, int& num)
     
 }
 
-string upAndDown (string theString);
+string upAndDown (string theString)
 {
+    string altString;
     
+    return altString;
 }
 
 int countWords (string theString)
 {
+    int numOfWords = 0;
     
+    return numOfWords;
 }
 
 int computeAverage (int values [], int arraySize)
 {
+    int avg = 0;
     
+    return avg;
 }
 
 int findMinValue (int values [], int arraySize)
 {
+    int min = 0;
     
+    return min;
 }
 
 int findMaxValue (int values [], int arraySize)
 {
+    int max = 0;
     
+    return max;
 }
 
 /*
