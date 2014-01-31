@@ -22,7 +22,7 @@ using namespace std;
  */
 void countCharacters (string theString, int& alpha, int& num);
 /*
- * Capatalize every other character in a string 
+ * Make every other character in the string uppercase beginning with the first character 
  * @param theString a string to be altered by the program
  * @return a string that has been altered by the function
  */
@@ -43,14 +43,14 @@ int countWords (string theString);
 int computeAverage (int values [], int arraySize);
 /*
  * Find the minimum value in an array of integers
- * @param values an array of integers
+ * @param values an array of integers, the array must contain at least 1 integer
  * @param arraySize the size of the values array
  * @return an int containing the min value in the given array
  */
 int findMinValue (int values [], int arraySize);
 /*
  * Find the maximum value in an array of integers
- * @param values an array of integers
+ * @param values an array of integers, the array must contain at least 1 integer
  * @param arraySize the size of the values array
  * @return an int containing the max value in the given array
  */
@@ -70,40 +70,83 @@ int main (int argc, char* argv[])
 
 void countCharacters (string theString, int& alpha, int& num)
 {
-    
+    alpha = num = 0;
+    for(int i = 0;i < theString.length(); i++)
+    {
+        if(isdigit(theString[i]))
+            num++;
+        else if (isalpha(theString[i]))
+            alpha++;
+    }
 }
 
 string upAndDown (string theString)
 {
-    string altString;
-    
-    return altString;
+    for(int i = 0; i < theString.length(); i++)
+    {
+        if(i%2)
+        {
+            theString[i] = tolower(theString[i]);
+        }
+        else
+        {
+            theString[i] = toupper(theString[i]);
+        }
+    }
+    return theString;
 }
 
 int countWords (string theString)
 {
     int numOfWords = 0;
-    
+    for(int i = 0; i < theString.length(); i++)
+    {
+        if(isalnum(theString[i]))
+        {
+            numOfWords++;
+            while((i+1) < theString.length() && !isspace(theString[i+1]))
+            {
+                i++;
+            }
+        }
+    }
     return numOfWords;
 }
 
 int computeAverage (int values [], int arraySize)
 {
     int avg = 0;
-    
+    for(int i = 0; i < arraySize; i++)
+    {
+        avg += values[i];
+    }
+    avg /= arraySize;
     return avg;
 }
 
 int findMinValue (int values [], int arraySize)
 {
-    int min = 0;
-    
+    int min = values[0];
+    for(int i = 0; i < arraySize; i++)
+    {
+        if(values[i] < min)
+        {
+            min = values[i];
+        }
+    }
     return min;
 }
 
 int findMaxValue (int values [], int arraySize)
 {
-    int max = 0;
+    int max = values[0];
+    for(int i = 0; i < arraySize; i++)
+    {
+        if(values[i] > max)
+        {
+            max = values[i];
+        }
+    }
     
     return max;
 }
