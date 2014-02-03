@@ -164,7 +164,7 @@ int rockScissorPaper (char playerOne, char playerTwo)
  */
 int asciiValue (char c)
 {
-	return c;
+	return static_cast<int>(c);
 }
 
 /*
