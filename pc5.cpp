@@ -19,6 +19,7 @@ using namespace std;
  * Display "Hello world!" to stdout (no newline character after)
  */
 void hello();
+
 /*
  * function name: printMessage
  * parameters: string message (call-by-value)
@@ -28,6 +29,7 @@ void hello();
  * Display message to stdout (no newline character after)
  */
 void printMessage(string message);
+
 /*
  * function name: getAnswer
  * parameters: none
@@ -37,6 +39,7 @@ void printMessage(string message);
  * Return the value 42
  */
 int getAnswer();
+
 /*
  * function name: findLarger
  * parameters: int n1 (call-by-value), int n2 (call-by-value)
@@ -47,6 +50,7 @@ int getAnswer();
  * if the values are equivalent.
  */
 int findLarger(int n1, int n2);
+
 /*
  * function name: getStats
  * parameters: string s  (call-by-value), int alphaCount (call-by-reference), int digitCount (call-by-reference)
@@ -57,6 +61,7 @@ int findLarger(int n1, int n2);
  * characters in s, digitCount should contain a count of the number of digits in s.
  */
 int getStats(string s, int& alphaCount, int& digitCount);
+
 /*
  * function name: buildMessage
  * parameters: string s (call-by-value), bool allCaps (call-by-value)
@@ -74,7 +79,7 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main ()
 {
 	unittest();
 	
@@ -105,10 +110,11 @@ int findLarger(int n1, int n2)
     
     return larger;
 }
+
 int getStats(string s, int& alphaCount, int& digitCount)
 {
     alphaCount = digitCount = 0;
-    for(int i = 0; i < s.length(); i++)
+    for(unsigned int i = 0; i < s.length(); i++)//comparison between signed and unsigned integer expressions
     {
         if(isdigit(s[i]))
             digitCount++;
@@ -124,7 +130,7 @@ string buildMessage(string s, bool allCaps)
     
     if(allCaps)
     {
-        for(int i = 0; i < s.length(); i++)
+        for(unsigned int i = 0; i < s.length(); i++)//comparison between signed and unsigned integer expressions
         {
             s[i] = toupper(s[i]);
         }

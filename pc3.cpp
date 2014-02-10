@@ -19,7 +19,7 @@ template <typename X, typename A>
 void btassert(A assertion);
 void unittest ();
 
-int main (int argc, char* argv[])
+int main ()
 {
 	unittest();
 	
@@ -174,7 +174,7 @@ int asciiValue (char c)
  */
 string toLower (string input)
 {
-	for(int i = 0; i < input.length(); i++)
+	for(unsigned int i = 0; i < input.length(); i++)
     {
         input[i] = tolower(input[i]);
     }
@@ -188,7 +188,7 @@ string toLower (string input)
  */
 string toUpper (string input)
 {
-	for(int i = 0; i < input.length(); i++)
+	for(unsigned int i = 0; i < input.length(); i++)
     {
         input[i] = toupper(input[i]);
     }
