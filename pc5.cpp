@@ -114,7 +114,7 @@ int findLarger(int n1, int n2)
 int getStats(string s, int& alphaCount, int& digitCount)
 {
     alphaCount = digitCount = 0;
-    for(unsigned int i = 0; i < s.length(); i++)//comparison between signed and unsigned integer expressions
+    for(unsigned int i = 0; i < s.length(); i++)
     {
         if(isdigit(s[i]))
             digitCount++;
@@ -130,7 +130,7 @@ string buildMessage(string s, bool allCaps)
     
     if(allCaps)
     {
-        for(unsigned int i = 0; i < s.length(); i++)//comparison between signed and unsigned integer expressions
+        for(unsigned int i = 0; i < s.length(); i++)
         {
             s[i] = toupper(s[i]);
         }

@@ -99,7 +99,7 @@ int valueAt (int values[], int size, int index, bool& error)
 {
     int number = 0;
     error = false;
-    if(index >= size)
+    if(index < 0 || index >= size)
     {
         error = true;
     }
