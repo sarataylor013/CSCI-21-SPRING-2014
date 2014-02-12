@@ -6,7 +6,7 @@ FLAGS = -Wall -Wextra -Werror -pedantic
 #
 # Programmer: Sara Taylor
 #
-all: pc1 pc2 pc3 pc4 pc5 pc6
+all: pc1 pc2 pc3 pc4 pc5 pc6 pc7
 
 # Target for programming challenge 1
 # Date completed: 2-10-2014
@@ -37,3 +37,8 @@ pc5: pc5.cpp
 # Date completed: 2-10-2014
 pc6: pc6.cpp
 	g++ $(FLAGS) -o pc6 pc6.cpp
+	
+# Target for programming challenge 6
+# Date completed: 2-10-2014
+pc7: pc7.cpp
+	g++ $(FLAGS) -o pc7 pc7.cpp
