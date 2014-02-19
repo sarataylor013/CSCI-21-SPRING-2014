@@ -52,7 +52,7 @@ bool processFile(string filename)
 {
     int input;
     ifstream myfile (filename.c_str());
-    if (myfile.is_open())
+    if (myfile.good())
     {
         while (myfile >> input )
         {
