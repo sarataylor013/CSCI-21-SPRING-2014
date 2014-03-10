@@ -89,10 +89,8 @@ int main ()
 
 // CODE HERE -- FUNCTION DEFINITIONS FOR PRIZE; USE INITIALIZER SECTION FOR CONSTRUCTOR
 Prize::Prize(string newName , unsigned int newValue)
+: name(newName), value(newValue)
 {
-    name = newName;
-    value = newValue;
-
     if(newValue > 100)
     {
         for(unsigned int i = 0; i < name.length(); i++)
@@ -115,9 +113,8 @@ unsigned int Prize::getValue() const
 }
 // CODE HERE -- FUNCTION DEFINITIONS FOR SECRETDOOR; USE INITIALIZER SECTION FOR CONSTRUCTOR
 SecretDoor::SecretDoor(unsigned int newNumber, Prize newPrize )
+:number(newNumber), prize(newPrize)
 {
-   number = newNumber;
-   prize = newPrize;
 }
 
 unsigned int SecretDoor::getNumber() const

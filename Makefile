@@ -6,7 +6,7 @@ FLAGS = -Wall -Wextra -Werror -pedantic
 #
 # Programmer: Sara Taylor
 #
-all: project-1 pc1 pc2 pc3 pc4 pc5 pc6 pc7 pc8 pc9 pc10 pc11
+all: project-1 pc01 pc02 pc03 pc04 pc05 pc06 pc07 pc08 pc09 pc10 pc11 pc12
 
 # Target for programming project 1
 # Date completed: 2-19-2014
@@ -15,48 +15,48 @@ project-1: project-1.cpp
 	
 # Target for programming challenge 1
 # Date completed: 2-10-2014
-pc1: pc1.cpp
-	g++ $(FLAGS) -o pc1 pc1.cpp
+pc01: pc01.cpp
+	g++ $(FLAGS) -o pc01 pc01.cpp
 	
 # Target for programming challenge 2
 # Date completed: 2-10-2014
-pc2: pc2.cpp
-	g++ $(FLAGS) -o pc2 pc2.cpp
+pc02: pc02.cpp
+	g++ $(FLAGS) -o pc02 pc02.cpp
 
 # Target for programming challenge 3
 # Date completed: 2-10-2014
-pc3: pc3.cpp
-	g++ $(FLAGS) -o pc3 pc3.cpp
+pc03: pc03.cpp
+	g++ $(FLAGS) -o pc03 pc03.cpp
 	
 # Target for programming challenge 4
 # Date completed: 2-10-2014
-pc4: pc4.cpp
-	g++ $(FLAGS) -o pc4 pc4.cpp
+pc04: pc04.cpp
+	g++ $(FLAGS) -o pc04 pc04.cpp
 	
 # Target for programming challenge 5
 # Date completed: 2-10-2014
-pc5: pc5.cpp
-	g++ $(FLAGS) -o pc5 pc5.cpp
+pc05: pc05.cpp
+	g++ $(FLAGS) -o pc05 pc05.cpp
 	
 # Target for programming challenge 6
 # Date completed: 2-10-2014
-pc6: pc6.cpp
-	g++ $(FLAGS) -o pc6 pc6.cpp
+pc06: pc06.cpp
+	g++ $(FLAGS) -o pc06 pc06.cpp
 	
 # Target for programming challenge 7
 # Date completed: 2-12-2014
-pc7: pc7.cpp
-	g++ $(FLAGS) -o pc7 pc7.cpp
+pc07: pc07.cpp
+	g++ $(FLAGS) -o pc07 pc07.cpp
 	
 # Target for programming challenge 8
 # Date completed: 2-12-2014
-pc8: pc8.cpp
-	g++ $(FLAGS) -o pc8 pc8.cpp
+pc08: pc08.cpp
+	g++ $(FLAGS) -o pc08 pc08.cpp
 
 # Target for programming challenge 9
 # Date completed: 2-19-2014
-pc9: pc9.cpp
-	g++ $(FLAGS) -o pc9 pc9.cpp
+pc09: pc09.cpp
+	g++ $(FLAGS) -o pc09 pc09.cpp
 	
 # Target for programming challenge 10
 # Date completed: 3-3-2014
@@ -67,4 +67,8 @@ pc10: pc10.cpp
 # Date completed: 3-3-2014
 pc11: pc11.cpp
 	g++ $(FLAGS) -o pc11 pc11.cpp
-	
+
+# Target for programming challenge 12
+# Date completed: 3-10-2014
+pc12: pc12.cpp
+	g++ $(FLAGS) -o pc12 pc12.cpp
