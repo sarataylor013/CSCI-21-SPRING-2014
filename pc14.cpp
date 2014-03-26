@@ -69,7 +69,7 @@ void selectionSort (int theArray[], unsigned int size)
     {
         unsigned int swapSource = i;
         unsigned int swapTarget = i;
-        unsigned int beginningOfUnsortedSection = (i+1);
+        unsigned int const beginningOfUnsortedSection = (i+1);
         for(unsigned int j = beginningOfUnsortedSection; j < size;j++)
         {
             if(theArray[j] < theArray[swapSource])
