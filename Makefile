@@ -6,8 +6,7 @@ FLAGS = -Wall -Wextra -Werror -pedantic
 #
 # Programmer: Sara Taylor
 #
-all: project-1 pc01 pc02 pc03 pc04 pc05 pc06 pc07 pc08 pc09 pc10 pc11 pc12 pc14
-
+all: pc14 pc13 pc12 pc11 pc10 pc09 pc08 pc07 pc06 pc05 pc04 pc03 pc02 pc01 project-1
 # Target for programming project 1
 # Date completed: 2-19-2014
 project-1: project-1.cpp

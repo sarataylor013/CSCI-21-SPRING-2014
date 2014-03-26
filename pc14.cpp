@@ -49,7 +49,7 @@ void bubbleSort (int theArray[], unsigned int size)
     do
     {
         swapped = false;
-        for(unsigned int i = 1; i <= (sizeOfUnsortedArray-1); i++)
+        for(unsigned int i = 1; i < sizeOfUnsortedArray; i++)
         {
             unsigned int LHS = i-1;
             unsigned int RHS = i;
@@ -65,18 +65,19 @@ void bubbleSort (int theArray[], unsigned int size)
 
 void selectionSort (int theArray[], unsigned int size)
 {
-    unsigned int n = size;
-    for(unsigned int i = 0; i < n; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-        unsigned int smallSub = i;
-        for(unsigned int j = (i+1); j <= (n-1);j++)
+        unsigned int swapSource = i;
+        unsigned int swapTarget = i;
+        unsigned int beginningOfUnsortedSection = (i+1);
+        for(unsigned int j = beginningOfUnsortedSection; j < size;j++)
         {
-            if(theArray[j] < theArray[smallSub])
+            if(theArray[j] < theArray[swapSource])
                 {
-                    smallSub = j;
+                    swapSource = j;
                 }
         }
-        swapValues(theArray, smallSub, i);
+        swapValues(theArray, swapTarget, swapSource);
     }
 }
 
