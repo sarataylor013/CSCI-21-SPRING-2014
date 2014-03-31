@@ -84,21 +84,53 @@ string* makeDynoString (string contents)
 void clearDynoString (string*& theString)
 {
     delete theString;
+    theString = NULL;
 }
 
-unsigned int countChars (string* /*theString*/, unsigned int& /*alpha*/, unsigned int& /*num*/)
+unsigned int countChars (string* theString, unsigned int& alpha, unsigned int& num)
 {
-    return 0;
+    if(theString == NULL)
+        throw ArrayException("NULL STRING REFERENCE");
+    unsigned int length = 0;
+    alpha = num = 0;
+    for(unsigned int i = 0; i < (*theString).length(); i++)
+    {
+        if(isdigit((*theString)[i]))
+            num++;
+        if(isalpha((*theString)[i]))
+            alpha++;
+        
+        length++;
+    }
+
+    return length;
 }
 
-bool findWord (string* /*theString*/, string /*theWord*/)
+bool findWord (string* theString, string theWord)
 {
-    return false;
+    if(theString == NULL)
+        throw ArrayException("NULL STRING REFERENCE");
+    if((*theString).find(theWord) == string::npos)
+    {
+        return false;
+    }
+    else
+        return true;
 }
 
-bool replaceWord (string* /*theString*/, string /*oldWord*/, string /*newWord*/)
+bool replaceWord (string* theString, string oldWord, string newWord)
 {
-    return false;
+    if(theString == NULL)
+        throw ArrayException("NULL STRING REFERENCE");
+    if((*theString).find(oldWord) == string::npos)
+    {
+        return false;
+    }
+    else
+    {
+        (*theString).replace((*theString).find(oldWord), oldWord.length(), newWord);
+        return true;
+    }
 }
 /*
  * Unit testing functions. Do not alter.
