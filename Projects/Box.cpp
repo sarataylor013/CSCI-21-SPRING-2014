@@ -1,5 +1,10 @@
 #include "Box.h"
 
+//
+// Grader comments 2014.04.11
+// Need blank line between function implementations.
+// Deducted 2 points
+//
 Box::Box()
 {
     boxNumber = 0;
