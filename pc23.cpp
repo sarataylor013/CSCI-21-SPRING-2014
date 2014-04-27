@@ -97,51 +97,48 @@ unsigned int fibonacci (unsigned int fibValue)
 
 bool wordIsPalindrome (string word)
 {
-    int length = word.length();
-    if(length <= 1)
+    int lastLetter = word.length() - 1;
+    if(lastLetter < 1)
     {
         return true;
     }
-    else if(word.at(0) == word.at(length -1)) 
+    if(word[0] == word[lastLetter])
     {
-        word = word.substr(1, (length - 2));
-        wordIsPalindrome (word);
+        word = word.substr(1, lastLetter - 1);
+        return wordIsPalindrome(word);
     }
-    return false;
+    else
+        return false;
 }
 
 string arrayForwardsAsString (int array[], unsigned int startIndex, unsigned int size)
 {
-    string result;
+    string result = "";
     stringstream ss;
-    unsigned int start = startIndex;
-    if(start == (size - 1))
+    if(startIndex < size)
+    {
+        ss << array[startIndex] << " ";
+        return ss.str() + arrayForwardsAsString (array, ++startIndex, size);
+    }
+    else
     {
         return result;
     }
-    
-    ss << array[startIndex] << " ";
-    startIndex++;
-    arrayForwardsAsString (array, startIndex, size);
-    result = ss.str();
-    return result;
 }
 
 string arrayBackwardsAsString (int array[], int startIndex, unsigned int size)
 {
-    string result;
+     string result = "";
     stringstream ss;
-    unsigned int start = startIndex;
-    if(start == (size - 1))
+    if(startIndex >= 0)
+    {
+        ss << array[startIndex] << " ";
+        return ss.str() + arrayBackwardsAsString (array, --startIndex, size);
+    }
+    else
     {
         return result;
     }
-    
-    ss << array[size] << " ";
-    size--;
-    arrayForwardsAsString (array, startIndex, size);
-    result = ss.str();
-    return result;
 }
 /*
  * Unit testing functions. Do not alter.
