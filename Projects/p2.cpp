@@ -104,12 +104,17 @@ void prizeTest()
 void boxTest()
 {
     Box box1;
+    Prize newPrize;
+    string name = "NO NAME";
+    int value = 0;
     bool isDone = false;
-    int input;
+    unsigned int input;
+    char userChoice = 'n';
+    string newColor = "NO COLOR";
     
     while(!isDone)
     {
-        cout<<"Box Test\n\n";
+        cout<<"\n\nBox Test\n\n";
         cout<<"Box info -> "<<box1.getBoxNumber()<<", "<<box1.getBoxColor()<<endl;
         cout<<"[1] Add prize\n";
         cout<<"[2] View prizes (using getPrize)\n";
@@ -124,20 +129,68 @@ void boxTest()
         
         switch(input){
             case 1:
+                cout<<"Prize name (current = \"NO NAME\"): ";
+                cin>>name;
+                cout<<"Prize value (current = 0): ";
+                cin>>value;
+                newPrize.setPrizeName(name);
+                newPrize.setPrizeValue(value);
+                if(box1.addPrize(newPrize))
+                    cout<<"New prize added.\n\n";
+                else
+                    cout<<"Unable to add new prize.\n\n";
             break;
             case 2:
+                for(unsigned int i = 0; i < box1.getPrizeCount(); ++i)
+                {
+                    cout << (i+1) << ": " << box1.getPrize(i).getPrizeName() << endl;
+                }
             break;
             case 3:
+                for(unsigned int i = 0; i < box1.getPrizeCount(); ++i)
+                {
+                    cout << (i+1) << ": " << box1.getPrize(i).getPrizeName() << endl;
+                }
+                cout << "\n Remove which prize (0 to cancel)?";
+                cin >> input;
+                if(input != 0)
+                {
+                    input -= 1;
+                    box1.removePrize(input);
+                }
             break;
             case 4:
+                cout << "Box number: " << box1.getBoxNumber() << endl;
+                cout << "Update (y/n)?";
+                cin >> userChoice;
+                if(userChoice == 'y')
+                {
+                    cout << "Enter new box number: ";
+                    cin >> input;
+                    box1.setBoxNumber(input);
+                    cout << "Box number: " << box1.getBoxNumber() << endl;
+                }
             break;
             case 5:
+                cout << "Box color: " << box1.getBoxColor() << endl;
+                cout << "Update (y/n)?";
+                cin >> userChoice;
+                if(userChoice == 'y')
+                {
+                    cout << "Enter new box color: ";
+                    cin >> newColor;
+                    box1.setBoxColor(newColor);
+                    cout << "Box color: " << box1.getBoxColor() << endl;
+                }
             break;
             case 6:
+                cout << "Box prize capacity: " << box1.getPrizeCapacity();
             break;
             case 7:
+                cout << "Box prize count: " << box1.getPrizeCount();
             break;
             case 0:
+                isDone = true;
             break;
             default:
                 cout<< "Not Valid Input\n";
