@@ -44,7 +44,7 @@ class ShoppingList
          *        of the item to be retrieved
          * @return if index is valid, a string containing the value of the item
          *         at the specified index
-         * @throw ArrayException with the message "INVALID ARRAY INDEX" if index is invalid
+         * @throw ArrayException with the message "INVALID ARRAY SIZE" if index is invalid
          */
         string getItem (unsigned int index) const;
 
@@ -53,7 +53,7 @@ class ShoppingList
          * @param index an unsigned integer containing the zero-based index
          *        of the item to be retrieved
          * @return if index is valid, a reference to the string at the specified index
-         * @throw ArrayException with the message "INVALID ARRAY INDEX" if index is invalid
+         * @throw ArrayException with the message "INVALID ARRAY SIZE" if index is invalid
          */
         string& getItem (unsigned int index);
 
@@ -63,7 +63,7 @@ class ShoppingList
          * @param index an unsigned integer containing the zero-based index
          *        of the item to be removed
          * @return the value of the string at the specified index
-         * @throw ArrayException with the message "INVALID ARRAY INDEX" if index is invalid
+         * @throw ArrayException with the message "INVALID ARRAY SIZE" if index is invalid
          */
         string removeItem (unsigned int index);
 
@@ -125,7 +125,7 @@ bool ShoppingList::addItem (string theItem)
 string ShoppingList::getItem (unsigned int index) const
 {
     if(index > itemCount)
-        throw ArrayException("INVALID ARRAY INDEX");
+        throw ArrayException("INVALID ARRAY SIZE");
     
     return items[index];
 }
@@ -133,7 +133,7 @@ string ShoppingList::getItem (unsigned int index) const
 string& ShoppingList::getItem (unsigned int index)
 {
     if(index > itemCount)
-        throw ArrayException("INVALID ARRAY INDEX");
+        throw ArrayException("INVALID ARRAY SIZE");
     
      return items[index];
 }
@@ -141,7 +141,7 @@ string& ShoppingList::getItem (unsigned int index)
 string ShoppingList::removeItem (unsigned int index)
 {
     if(index > itemCount)
-        throw ArrayException("INVALID ARRAY INDEX");
+        throw ArrayException("INVALID ARRAY SIZE");
     
     string returnItem = items[index];
     items[index] = "";
@@ -181,7 +181,7 @@ void unittest ()
         myList.getItem(0);
     } catch (ArrayException e) {
         try {
-            btassert<bool>(e.message == "INVALID ARRAY INDEX");
+            btassert<bool>(e.message == "INVALID ARRAY SIZE");
             cout << "Passed TEST 3: ShoppingList::getItem(0) EXCEPTION HANDLING \n";
         } catch (bool b) {
             cout << "# FAILED TEST 3: ShoppingList::getItem(0) EXCEPTION HANDLING #\n";
@@ -245,7 +245,7 @@ void unittest ()
         myList.getItem(11);
     } catch (ArrayException e) {
         try {
-            btassert<bool>(e.message == "INVALID ARRAY INDEX");
+            btassert<bool>(e.message == "INVALID ARRAY SIZE");
             cout << "Passed TEST 11: ShoppingList::getItem(11) EXCEPTION HANDLING \n";
         } catch (bool b) {
             cout << "# FAILED TEST 11: ShoppingList::setItem(11) EXCEPTION HANDLING #\n";
@@ -274,7 +274,7 @@ void unittest ()
         myList.getItem(0) = "oranges";
     } catch (ArrayException e) {
         try {
-            btassert<bool>(e.message == "INVALID ARRAY INDEX");
+            btassert<bool>(e.message == "INVALID ARRAY SIZE");
             cout << "Passed TEST 14: string& ShoppingList::getItem(0) EXCEPTION HANDLING \n";
         } catch (bool b) {
             cout << "# FAILED TEST 14: string& ShoppingList::setItem(0) EXCEPTION HANDLING #\n";

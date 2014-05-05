@@ -113,7 +113,6 @@ bool wordIsPalindrome (string word)
 
 string arrayForwardsAsString (int array[], unsigned int startIndex, unsigned int size)
 {
-    string result = "";
     stringstream ss;
     if(startIndex < size)
     {
@@ -122,13 +121,12 @@ string arrayForwardsAsString (int array[], unsigned int startIndex, unsigned int
     }
     else
     {
-        return result;
+        return ss.str();
     }
 }
 
 string arrayBackwardsAsString (int array[], int startIndex, unsigned int size)
 {
-     string result = "";
     stringstream ss;
     if(startIndex >= 0)
     {
@@ -137,7 +135,7 @@ string arrayBackwardsAsString (int array[], int startIndex, unsigned int size)
     }
     else
     {
-        return result;
+        return ss.str();
     }
 }
 /*
