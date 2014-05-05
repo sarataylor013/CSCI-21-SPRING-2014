@@ -1,3 +1,5 @@
+FLAGS = -Wall -Wextra -Werror -pedantic
+
 pc25: BSTNode.o pc25.o 
 	g++ $(FLAGS) pc25.o BSTNode.o -o pc25
 
