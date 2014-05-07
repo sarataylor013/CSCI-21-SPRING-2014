@@ -21,6 +21,8 @@ bool BSTree::insert(int contents)
 void BSTree::clear()
 {
     clear(root);
+    root = NULL;
+    size = 0;
 }
 
 unsigned int BSTree::getSize () const
@@ -33,40 +35,42 @@ void BSTree::inOrder ()
     inOrder(root);
 }
 
-bool BSTree::insert(int contents, BSTNode*& ROOT)
+bool BSTree::insert(int contents, BSTNode*& tmpROOT)
 {
-    if(ROOT == NULL)
+    if(tmpROOT == NULL)
     {
-        ROOT = new BSTNode(contents);
+        tmpROOT = new BSTNode(contents);
         size++;
         return true;
     }
-    else if(contents < ROOT -> getContents())
+    else if(contents < tmpROOT -> getContents())
     {
-        return insert(contents, ROOT -> getLeftChild());
+        return insert(contents, tmpROOT -> getLeftChild());
     }
-    else if(contents > ROOT -> getContents())
+    else if(contents > tmpROOT -> getContents())
     {
-        return insert(contents, ROOT -> getRightChild());
+        return insert(contents, tmpROOT -> getRightChild());
     }
     else
         return false;
 }
-void BSTree::clear(BSTNode*& ROOT)
+void BSTree::clear(BSTNode*& tmpROOT)
 {
-    if(ROOT != NULL)
+    if(tmpROOT != NULL)
     {
-        inOrder(ROOT -> getLeftChild());
-        inOrder(ROOT -> getRightChild());
-        delete ROOT;
+        clear(tmpROOT -> getLeftChild());
+        clear(tmpROOT -> getRightChild());
+        delete tmpROOT;
+        
     }
+    
 }
-void BSTree::inOrder(BSTNode* ROOT)
+void BSTree::inOrder(BSTNode* tmpROOT)
 {
-    if(ROOT != NULL)
+    if(tmpROOT != NULL)
     {
-        inOrder(ROOT -> getLeftChild());
-        cout << ROOT -> getContents() << " ";
-        inOrder(ROOT -> getRightChild());
+        inOrder(tmpROOT -> getLeftChild());
+        cout << tmpROOT -> getContents() << " ";
+        inOrder(tmpROOT -> getRightChild());
     }
 }

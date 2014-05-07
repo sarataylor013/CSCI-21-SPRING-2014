@@ -16,7 +16,7 @@ class BSTree
     private:
         BSTNode* root;
         unsigned int size;
-        bool insert(int contents, BSTNode*& ROOT);
-        void clear(BSTNode*& ROOT);
-        void inOrder(BSTNode* ROOT);
+        bool insert(int contents, BSTNode*& tmpROOT);
+        void clear(BSTNode*& tmpROOT);
+        void inOrder(BSTNode* tmpROOT);
 };
