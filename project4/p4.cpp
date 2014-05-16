@@ -7,7 +7,18 @@
 #include <sstream>
 #include <fstream>
 
+/*
+ * Displays an error if BSTree has not been instantiated
+ * @param myTree a pointer to a BSTree
+ * @return true if myTree is not NULL
+ */
 bool error(BSTree<Word>* myTree);
+
+/*
+ * Transforms a given string to all upper case
+ * @param newWord the string to be transformed
+ * @return newWord in all uppercase
+ */
 string toUpper(string newWord);
 
 using namespace std;
@@ -18,14 +29,18 @@ int main (int argc, char* argv[])
     Word newWord;
     BSTree<Word>* myTree = NULL;
     ifstream myfile (argv[1]);
-    if (myfile.good())
+    if(argc != 2)
+    {
+        cout << "INCORRECT NUMBER OF COMMAND LINE ARGUMENTS\n";
+    }
+    else if (myfile.good())
     {
         while (myfile >> command )
         {
             switch(command)
             {
                 case '#':
-                    getline(cin, input);
+                    getline(myfile, input);
                 break;
                 case 'C':
                 case 'c':
@@ -145,18 +160,22 @@ int main (int argc, char* argv[])
                         if(myTree->getSize() > 0)
                         {
                             myTree->reverseOrder();
+                            cout << endl;
                         }
                         else
                             cout << "TREE EMPTY\n";
                     }
                 break;
+                default :
+                    cout << "NOT A VALID COMMAND\n";
             }
         }
         myfile.close();
+        
     }
-    if(argc != 2)
+    else
     {
-        cout << "Incorrect number of command line arguments.\n";
+        cout << "NOT A VALID FILENAME\n";
     }
     return 0;
 }

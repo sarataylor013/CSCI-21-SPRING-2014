@@ -6,63 +6,130 @@ template <class T>
 class BSTree
 {
     public:
+        /*
+         * Default constructor; initialize count to zero, root to NULL
+         */
         BSTree()
         :root(NULL), sizeOfTree(0){}
+        
+        /*
+         * Default Destructor; Calls clear();
+         */
         ~BSTree ()
         {clear();}
+        
+        /*
+         * returns the size of the tree
+         * @return unsigned int containing size of the tree
+         */
         unsigned int getSize () const
         {return sizeOfTree;}
+        
+        /*
+         * Calls a private clear function then nulls out the root
+         */
         void clear()
         {
             clear(root);
             root = NULL;
             sizeOfTree = 0;
         }
+        
+        /*
+         * Calls private insert to insert new Nodes in the tree
+         * @param newContents contents to be stored in the new Node
+         * @return bool; returns true if insert was successful
+         */
         bool insert (T newContents)
         {return insert(newContents, root);}
+        
+        /*
+         * Calls private find to find data in the tree
+         * @param targetData templated Data to be found
+         * @return bool returns true if Data was found
+         */
         bool find (T targetData)
         {return find(targetData, root);}
+        
+        /*
+         * Calls private remove function to remove targetData
+         * @param targetData templated Data to be removed
+         * @return bool retruns true if data was found and removed
+         */
         bool BSTremove(T targetData)
         {return BSTremove(targetData, root);}
+        
+        /*
+         * Calls private get function returns a pointer to targetData on success, NULL on failure
+         * @param targetData templated data to be found
+         * @return templated pointer; returns a pointer to targetData on success, NULL on failure
+         */
         T* get(T targetData)
         {return get(targetData, root);}
+        
+        /*
+         * Calls private inOrder to display the contents of the tree in ascending order
+         */
         void inOrder()
         {inOrder(root);}
+        
+        /*
+         * Calls private reverseOrder to display the contents of the tree in descending order
+         */
         void reverseOrder()
         {reverseOrder(root);}
         
     private:
         BSTNode<T>* root;
         int sizeOfTree;
-        void clear (BSTNode<T>*& tmpRoot)
+        
+        /*
+         * recursively deletes all the nodes in the tree
+         * @param tmpRoot pointer to the root of the current subtree
+         */
+        void clear (BSTNode<T>*& tempRoot)
         {
-            if(tmpRoot != NULL)
+            if(tempRoot != NULL)
             {
-                clear(tmpRoot -> getLeftChild());
-                clear(tmpRoot -> getRightChild());
-                delete tmpRoot;
+                clear(tempRoot -> getLeftChild());
+                clear(tempRoot -> getRightChild());
+                delete tempRoot;
         
             }
         }
-        bool insert(T newContents, BSTNode<T>*& tmpRoot)
+        
+        /*
+         * recursively sorts and inserts new Nodes in the tree
+         * @param newContents contents to be stored in the new Node
+         * @param tempRoot pointer to the root of the current subtree
+         * @return bool; returns true if insert was successful
+         */
+        bool insert(T newContents, BSTNode<T>*& tempRoot)
         {
-            if(tmpRoot == NULL)
+            if(tempRoot == NULL)
             {
-                tmpRoot = new BSTNode<T>(newContents);
+                tempRoot = new BSTNode<T>(newContents);
                 sizeOfTree++;
                 return true;
             }
-            else if(newContents < tmpRoot -> getData())
+            else if(newContents < tempRoot -> getData())
             {
-                return insert(newContents, tmpRoot -> getLeftChild());
+                return insert(newContents, tempRoot -> getLeftChild());
             }
-            else if(newContents > tmpRoot -> getData())
+            else if(newContents > tempRoot -> getData())
             {
-                return insert(newContents, tmpRoot -> getRightChild());
+                return insert(newContents, tempRoot -> getRightChild());
             }
             else
                 return false;
         }
+        
+        /*
+         * Finds data in the tree
+         * @param targetData templated Data to be found
+         * @param tempRoot pointer to the root of the current subtree
+         * @return bool returns true if Data was found; else returns false
+         */
         bool find(T targetData, BSTNode<T>* tempRoot)
         {
             if(tempRoot == NULL)
@@ -82,6 +149,13 @@ class BSTree
                 return find(targetData, tempRoot -> getLeftChild());
             }
         }
+        
+        /*
+         * Removes node containing targetData
+         * @param targetData templated Data to be removed
+         * @param tempRoot pointer to the root of the current subtree
+         * @return bool retruns true if data was found and removed
+         */
         bool BSTremove(T targetData, BSTNode<T>*& tempRoot)
         {
             if(tempRoot == NULL)
@@ -113,6 +187,12 @@ class BSTree
                 return true;
             }
         }
+        
+        /*
+         * Helps the remove function reorder the tree if the target node has a leftChild
+         * @param removed templated Data to be removed
+         * @param tempRoot pointer to the root of the current subtree
+         */
         void removeMax (T& removed, BSTNode<T>*& tempRoot)
         {
             if(tempRoot -> getRightChild() == NULL)
@@ -127,6 +207,13 @@ class BSTree
                 removeMax(removed, tempRoot->getRightChild());
             }
         }
+        
+        /*
+         * Searches the tree and returns a pointer to targetData on success, NULL on failure
+         * @param targetData templated data to be found
+         * @param tempRoot pointer to the root of the current subtree
+         * @return templated pointer; returns a pointer to targetData on success, NULL on failure
+         */
         T* get(T targetData, BSTNode<T>* tempRoot)
         {
             if(targetData == tempRoot->getData())
@@ -156,6 +243,11 @@ class BSTree
                 }
             }
         }
+        
+        /*
+         * Recursively displays the contents of the tree in ascending order
+         * @param tempRoot pointer to the root of the current subtree
+         */
         void inOrder(BSTNode<T>* tempRoot)
         {
             if(tempRoot != NULL)
@@ -165,6 +257,11 @@ class BSTree
                 inOrder(tempRoot -> getRightChild());
             }
         }
+        
+        /*
+         * Recursively displays the contents of the tree in descending order
+         * @param tempRoot pointer to the root of the current subtree
+         */
         void reverseOrder (BSTNode<T>* tempRoot)
         {
             if(tempRoot != NULL)
@@ -175,24 +272,3 @@ class BSTree
             }
         }
 };
-/*
-data members: size of tree (number of nodes), pointer to root
-BSTree () : initialize count to zero, root to NULL
-~BSTree () : call clear function
-unsigned int getSize () const : return count
-(public) void clear () : calls private clear
-(private) void clear (BSTNode*& tempRoot) -- helper for public clear
-(public) bool insert (T newContents) : calls private insert
-(private) bool insert (T newContents, BSTNode*& tempRoot) -- creates node to contain newContents and inserts it in the tree, returns true; if newContents is already in the tree, does not insert, returns false
-(public) bool find (T targetData) : calls private find
-(private) bool find (T targetData, BSTNode* tempRoot) -- returns true if targetData can be found in tree, else returns false
-(public) bool remove (T targetData) : calls private remove
-(private) bool remove (T targetData, BSTNode*& tempRoot) -- returns true if targetData is removed from tree, else returns false
-(private) void removeMax (T& removed, BSTNode*& tempRoot) -- for use with the recursive remove algorithm
-(public) T* get (T targetData) : calls private get
-(private) T* get (T targetData, BSTNode* tempRoot) -- returns a pointer to targetData on success, NULL on failure
-(public) void inOrder () : calls private inOrder
-(private) void inOrder (BSTNode* tempRoot) -- displays contents of nodes in tree in ascending order (requires use of operator<< on node data) to STDOUT
-(public) void reverseOrder () : calls private reverseOrder
-(private) void reverseOrder (BSTNode* tempRoot) -- displays contents of nodes in tree in descending order (requires use of operator<< on node data) to STDOUT
-*/
