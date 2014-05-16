@@ -15,6 +15,11 @@ void unittest ();
 void prizeTest();
 void boxTest();
 
+//
+// Grader comments 2014.04.11
+// Passes 11 of 30 tests before crashing.
+// Deducted 190 points
+//
 int main()
 {
     bool isDone = false;
@@ -101,6 +106,11 @@ void prizeTest()
     }
 }
 
+//
+// Grader comments 2014.04.11
+// No unit test for box class
+// Deducted 90 points
+//
 void boxTest()
 {
     Box box1;
