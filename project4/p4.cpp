@@ -1,3 +1,7 @@
+//
+// Grader comments 2014.05.23
+// -35 points total
+//
 #include "Word.h"
 #include "BSTree.h"
 
@@ -35,12 +39,38 @@ int main (int argc, char* argv[])
     }
     else if (myfile.good())
     {
-        while (myfile >> command )
+		//
+		// Grader comments 2014.05.23
+		// Using the extraction operator like this is problematic.
+		// Imagine that the tree hasn't yet been created. That is,
+		// myTree == NULL. If you get a command that says "I attercop",
+		// Your error processing will see that there is no tree, which
+		// is good. But the extraction operator only gets one character
+		// at a time, and keeps getting characters from the same line
+		// until there is no more data on the line. So command is 'I'
+		// on the first time through, and then command is 'a', then 't',
+		// 't', 'e', and so on.
+		//
+		// -20 points
+		//
+		// Rob did some rearranging throughout this loop to fix the
+		// extraction operator stuff, to get the unit test to work.
+		//
+        while (getline(myfile, input) == true)
         {
+			command = input[0];
+			
+			if(input.size() > 2)
+			{
+				input = input.substr(2);
+			}
+			
+			//cout << "Rob: '" << command << "', '" << input << "'" << endl;
+
             switch(command)
             {
                 case '#':
-                    getline(myfile, input);
+                    //getline(myfile, input);	// Rob
                 break;
                 case 'C':
                 case 'c':
@@ -70,23 +100,40 @@ int main (int argc, char* argv[])
                 break;
                 case 'I':
                 case 'i':
+				//
+				// Grader comments 2014.05.23
+				// WORD x INCREMENTED should be reported only if you
+				// actually increment the count. Also, if you're inserting
+				// the value for the first time, then the program
+				// should report WORD x INSERTED. Finally, don't convert
+				// the word to upper case. The data should be inserted
+				// into the tree as is.
+				//
+				// -5 points
+				//
+				// Rob rearranged the following to get the unit test to work.
+				//
                     if(!error(myTree))
                     {
-                        myfile >> input;
+                        //myfile >> input;	// Rob
                         newWord.setWord(toUpper(input));
                         if(!myTree->insert(newWord))
                         {
                             myTree->get(newWord)->incrementCount();  
+		                    cout << "WORD "<< input <<" INCREMENTED\n";
                         }
+						else
+						{
+							cout << "WORD "<< input << " INSERTED\n";
+						}
                     }
                     //insert word in alphabetical order
-                    cout << "WORD "<< toUpper(input) <<" INCREMENTED\n";
                 break;
                 case 'F':
                 case 'f':
                     if(!error(myTree))
                     {
-                        myfile >> input;
+                        //myfile >> input;	// Rob
                         newWord.setWord(toUpper(input));
                         if(myTree->getSize() == 0)
                         {
@@ -104,33 +151,53 @@ int main (int argc, char* argv[])
                 case 'r':
                     if(!error(myTree))
                     {
-                        myfile >> input;
+                        //myfile >> input;	// Rob
                         newWord.setWord(toUpper(input));
                         if(myTree->getSize() == 0)
                         {
                             cout << "TREE EMPTY\n";
                         }
+						
+						//
+						// Grader comments 2014.05.23
+						// Should do this stuff only if the tree is non-empty.
+						// -5 points
+						// Rob changed the following code to get the unit test to work.
+						//
                         //remove word
-                        if(myTree->BSTremove(newWord))
-                            cout << "REMOVED "<< toUpper(input) <<"\n";
-                        else
-                            cout << toUpper(input) <<" NOT FOUND\n";
+						else
+						{
+	                        if(myTree->BSTremove(newWord))
+	                            cout << "REMOVED "<< toUpper(input) <<"\n";
+	                        else
+	                            cout << toUpper(input) <<" NOT FOUND\n";
+						}
                     }
                 break;
                 case 'G':
                 case 'g':
                     if(!error(myTree))
                     {
-                        myfile >> input;
+                        //myfile >> input;	// Rob
                         newWord.setWord(toUpper(input));
                         if(myTree->getSize() == 0)
                         {
                             cout << "TREE EMPTY\n";
                         }
-                        if(myTree->find(newWord))
-                            cout << "GOT "<< toUpper(input) << " " << myTree->get(newWord)->getCount() << "\n";
-                        else
-                            cout << toUpper(input) <<" NOT FOUND\n";
+						
+						//
+						// Grader comments 2014.05.23
+						// Should do this stuff only if the tree is non-empty.
+						// -5 points
+						// Rob changed the following code to get the unit test to work.
+						//
+						else
+						{
+							if(myTree->find(newWord))
+								cout << "GOT "<< toUpper(input) << " " << myTree->get(newWord)->getCount() << "\n";
+							else
+								cout << toUpper(input) <<" NOT FOUND\n";
+						}
                     }
                 break;
                 case 'N':
