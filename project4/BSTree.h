@@ -1,3 +1,8 @@
+//
+// Grader comments 2014.05.23
+// -15 points total
+//
+#pragma once
 #include "BSTNode.h"
 
 using namespace std;
@@ -56,6 +61,11 @@ class BSTree
          * @param targetData templated Data to be removed
          * @return bool retruns true if data was found and removed
          */
+		//
+		// Grader comments 2014.05.23
+		// Function should be called remove()
+		// -5 points
+		//
         bool BSTremove(T targetData)
         {return BSTremove(targetData, root);}
         
@@ -216,6 +226,16 @@ class BSTree
          */
         T* get(T targetData, BSTNode<T>* tempRoot)
         {
+			//
+			// Grader comments 2014.05.23
+			// tempRoot could be null on entry to this function.
+			// Can't use it without checking it first.
+			// -10 points
+			//
+			if(tempRoot == NULL) {	// Rob added to get unit test to work
+				return NULL;
+			}
+			
             if(targetData == tempRoot->getData())
             {
                 return &(tempRoot->getData());
@@ -253,7 +273,7 @@ class BSTree
             if(tempRoot != NULL)
             {
                 inOrder(tempRoot -> getLeftChild());
-                cout << tempRoot -> getData() << " ";
+                cout << tempRoot -> getData() << "\n";	// Rob added newline for unit test
                 inOrder(tempRoot -> getRightChild());
             }
         }
@@ -267,7 +287,7 @@ class BSTree
             if(tempRoot != NULL)
             {
                 reverseOrder(tempRoot -> getRightChild());
-                cout << tempRoot -> getData() << " ";
+                cout << tempRoot -> getData() << "\n";	// Rob added newline for unit test
                 reverseOrder(tempRoot -> getLeftChild());
             }
         }
