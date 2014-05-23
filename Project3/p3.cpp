@@ -1,3 +1,10 @@
+/* Driver for programming project 3
+ *
+ * CSCI 21, Spring 2014
+ *
+ * Programmer: Sara Taylor
+ */
+
 #include "DList.h"
 #include <cstdlib>
 #include <iostream>
