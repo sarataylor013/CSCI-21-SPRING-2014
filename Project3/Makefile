@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror -pedantic -Wno-newline-eof
 # Programmer: Sara Taylor
 #
 project3: p3.o 
-	g++ $(FLAGS) p3.o DLNode.h DList.h -o p3
+	g++ $(FLAGS) p3.o -o p3
 
 p3.o: p3.cpp DLNode.h DList.h
 	g++ $(FLAGS) -c p3.cpp -o p3.o
