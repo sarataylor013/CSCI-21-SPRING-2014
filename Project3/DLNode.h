@@ -1,3 +1,10 @@
+/* DNode.h for programming project 3
+ *
+ * CSCI 21, Spring 2014
+ *
+ * Programmer: Sara Taylor
+ */
+
 #pragma once
 #include <iostream>
 #include <sstream>

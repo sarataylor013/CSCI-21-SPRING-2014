@@ -1,8 +1,17 @@
+/* DList.h for programming project 3
+ *
+ * CSCI 21, Spring 2014
+ *
+ * Programmer: Sara Taylor
+ */
+
+#pragma once
+
 //
 // Grader comments 2014.05.23
 // -25 points total
 //
-#pragma once
+
 #include "DLNode.h"
 #include <string>
 using namespace std;
