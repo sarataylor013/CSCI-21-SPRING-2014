@@ -1,3 +1,8 @@
+//
+// Grader comments 2014.05.23
+// -30 points total
+//
+
 #include "DList.h"
 #include <cstdlib>
 #include <iostream>
@@ -19,11 +24,54 @@ int main(int argc, char* argv[])
 		int number;
 		string comment;
 		DList<int>* myList = NULL;
-		while(myfile >> command)
+
+		//
+		// Grader comments 2014.05.23
+		// Using the extraction operator like this is problematic.
+		// Imagine that the tree hasn't yet been created. That is,
+		// myTree == NULL. If you get a command that says "I attercop",
+		// Your error processing will see that there is no tree, which
+		// is good. But the extraction operator only gets one character
+		// at a time, and keeps getting characters from the same line
+		// until there is no more data on the line. So command is 'I'
+		// on the first time through, and then command is 'a', then 't',
+		// 't', 'e', and so on.
+		//
+		// -20 points
+		//
+		// Rob did some rearranging throughout this loop to fix the
+		// extraction operator stuff, to get the unit test to work.
+		//
+		string input;
+        while (getline(myfile, input) == true)
 		{
+			if(input.length() == 0) {
+				continue;
+			} else {
+				command = input[0];
+				
+				if(input.length() > 2) {
+					input = input.substr(2);
+				} else {
+					input = string();
+				}
+			}
+			
+			//
+			// Grader comments 2014.05.24
+			// Need to report "MUST CREATE LIST INSTANCE" where applicable.
+			// -10 points
+			//
+			if((command != '#') && (command != 'C') && (myList == NULL)) {
+				cout << "MUST CREATE LIST INSTANCE" << endl;
+				continue;
+			}
+
+			stringstream converter(input);
+			
 			switch(command){
 				case '#':
-					getline(myfile, comment);
+					//getline(myfile, comment);	// Rob
 				break;
 				case 'c':
 				case 'C':
@@ -54,19 +102,25 @@ int main(int argc, char* argv[])
 				break;
 				case 'i':
 				case 'I':
-					myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+					
 					myList->insert(number);
 					cout << "VALUE "<< number <<" INSERTED\n";
 				break;
 				case 'f':
 				case 'F':
-    				myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+
     				myList->insertHead(number);
 					cout <<  "VALUE "<< number <<" ADDED TO HEAD\n";
 				break;
 				case 'b':
 				case 'B':
-				    myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+
     				myList->insertTail(number);
 					cout <<  "VALUE "<< number <<" ADDED TO TAIL\n";
 				break;
@@ -114,7 +168,9 @@ int main(int argc, char* argv[])
 				break;
 				case 'e':
 				case 'E':
-				    myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+
 				    if(myList->removeAll(number))
 				    {
 				        cout << "VALUE "<<number<<" ELIMINATED\n";
@@ -124,7 +180,9 @@ int main(int argc, char* argv[])
 				break;
 				case 'r':
 				case 'R':
-				    myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+
 				    if(myList->removeFirst(number))
 				    {
 				        cout << "VALUE "<<number<<" REMOVED\n";
@@ -134,7 +192,9 @@ int main(int argc, char* argv[])
 				break;
 				case 'g':
 				case 'G':
-    				myfile >> number;
+					//myfile >> number;		// Rob
+					converter >> number;	// Rob
+
     				if(myList->get(number))
     				{
     				    cout << "VALUE "<<number<<" FOUND\n";
