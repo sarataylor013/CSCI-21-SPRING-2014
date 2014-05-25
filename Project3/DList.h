@@ -7,6 +7,11 @@
 
 #pragma once
 
+//
+// Grader comments 2014.05.23
+// -25 points total
+//
+
 #include "DLNode.h"
 #include <string>
 using namespace std;
@@ -40,6 +45,7 @@ class DList
          * create new DLNode with newContents and attach at head; *should not be called in conjunction with insert
          * @param newContents int containing the new contents
          */
+#define pushFront insertHead
         void insertHead(T newContents)
         {
             DLNode<T>* newNode = new DLNode<T>(newContents);
@@ -48,6 +54,18 @@ class DList
             {
                 tail = newNode;
             }
+			
+			//
+			// Grader comments 2014.05.24
+			// Need to point the old head backward to the
+			// new node.
+			// -10 points
+			//
+			else
+			{
+				head->setPreviousNode(newNode);
+			}
+			
 	        head = newNode;
 	        size++;
         }
@@ -56,6 +74,7 @@ class DList
 		 * create new DLNode with newContents and attach at tail; *should not be called in conjunction with insert
 		 * @param newContents int containing the new contents
 		 */
+#define pushBack insertTail
         void insertTail (T newContents)
         {
             DLNode<T>* newNode = new DLNode<T>(newContents);
@@ -159,6 +178,7 @@ class DList
 		/*
 		 * remove current head node; do nothing if list is empty
 		 */
+#define popFront removeHead
         void removeHead()
         {
             if(head != NULL)
@@ -184,6 +204,7 @@ class DList
         /*
 		 * remove current tail node; do nothing if list is empty
 		 */
+#define popBack removeTail
         void removeTail ()
         {
             if(head != NULL)
@@ -225,6 +246,13 @@ class DList
             {
                 if(temp->getContents() == newContents)
                 {
+					//
+					// Grader comments 2014.05.24
+					// Need to set wasFound to true here so the caller
+					// will know that the remove worked.
+					// -10 points
+					//
+					wasFound = true;	// Rob
                     removeHead();
                 }
                 else
@@ -279,6 +307,13 @@ class DList
                 delete temp;
                 size--;
             }
+			
+			//
+			// Grader comments 2014.05.24
+			// Need to manage tail here too.
+			// -5 points
+			//
+			tail = NULL;
         }
         /*
 		 * display the contents of each node in the list, formatted per the program specification ("NUM1,NUM2,NUM3,...,NUMX"), to the output stream out
@@ -293,13 +328,13 @@ class DList
                 out << temp->getContents() << ",";
                 temp = temp->getNextNode();
             }
-            out << temp->getContents() <<endl;
+            out << temp->getContents();// <<endl;	// Rob -- to get the unit test to work
             
             return out;
         }
     
     
-    private:
+		//private:
         DLNode<T>* head;
         DLNode<T>* tail;
         unsigned int size;
